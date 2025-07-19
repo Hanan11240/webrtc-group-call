@@ -1,0 +1,10 @@
+#local-media {
+    height: 400px;
+    border: 2px solid red;
+}
+
+#remote-media{
+    margin-top: 20px;
+    height: 200px;
+    border: 2px solid red;
+}
