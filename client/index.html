@@ -1,21 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group call</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mesh Group Call</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #localVideo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    #remoteVideos {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      overflow-x: auto;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+      height: 220px;
+    }
+
+    #remoteVideos::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    #remoteVideos::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+
+    #remoteVideos video {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      flex-shrink: 0;
+      background-color: black;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 600px) {
+      #remoteVideos {
+        height: 180px;
+      }
+
+      #remoteVideos video {
+        width: 160px;
+        height: 160px;
+      }
+    }
+  </style>
 </head>
-
 <body>
-    <div id="videos">
-        <video class="video-player" id="user-1" autoplay playsinline></video>
-        <video class="video-player" id="user-2" autoplay playsinline></video>
-    </div>
-    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"
-        ></script>
-    <script src="script.js"></script>
-</body>
+  <video id="localVideo" autoplay muted playsinline></video>
+  <div id="remoteVideos"></div>
 
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
